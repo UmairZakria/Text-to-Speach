@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
+    <title>Text to Speech</title>
+</head>
+<body class="bg-slate-200">
+    <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl">Text to Speech</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                <a class="mr-5 hover:text-gray-900" href="#">Home</a>
+                <a class="mr-5 hover:text-gray-900" href="#">About</a>
+            </nav>
+        </div>
+    </header>
+    <section class="text-gray-600 body-font">
+        <div class="container mx-auto flex px-5 py-8 items-center justify-center flex-col">
+            <div class="text-center lg:w-2/3 w-full">
+                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Text to Speech</h1>
+                <p class="mb-8 leading-relaxed">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate dicta vero rem unde, obcaecati sequi laudantium quas dolores, repellat dolore sunt sit debitis! Eos aliquam id, ipsum vero ab quibusdam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ullam aliquid voluptatibus, molestias laudantium assumenda! Nostrum architecto perferendis, eum eos veritatis reprehenderit dignissimos. Debitis ullam unde ab magnam quis repudiandae? Convert unlimited text to audio for free with your preferred voice.</p>
+            </div>
+        </div>
+    </section>
+    <div class="container mx-auto py-5 px-20">
+        <form id="textForm" action="/speak" method="post">
+            <label for="largeTextInput" class="block text-lg font-medium text-gray-700">Enter your text:</label>
+            <textarea id="text" name="text" class="mt-2 p-4 w-full h-64 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Type your text here..."></textarea>
+            <div class="flex ml-6 items-center">
+                <span class="mr-3">Select the voice:</span>
+                <div class="relative">
+                    <select id="voiceSelect" name="voice" class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
+                        <option value="Default">Default</option>
+                        <option value="Male">Male "James"</option>
+                        <option value="Female">Female "Janifer"</option>
+                        </select><br>
+                        <span class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4" viewBox="0 0 24 24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                            </span>
+                            </div>
+                        </div>
+                <button type="submit" value="convert" class="ml-6 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Convert</button>
+        </form>
+        <section class="text-gray-600 body-font">
+            <div class="container py-10 mx-auto items-end">
+                
+                <div class="bg-slate-200 p-4 rounded-lg max-w-90px min-w-20px">
+                    <div class="flex justify-center mb-4">
+                        <audio id="audioPlayer" controls style="display: none;" class="w-full">
+                            <source id="audioSource" src="" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <button id="downloadBtn" class="ml-3 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" style="display: none;">Download</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        document.getElementById('voiceSelect').addEventListener('change', function() {
+            var selectedVoice = this.value;
+            console.log('Selected Voice:', selectedVoice);
+            // Optionally, you can send this value to the server via AJAX if needed.
+        });
+    </script>
+</body>
+</html>
